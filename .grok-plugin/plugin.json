@@ -1,0 +1,13 @@
+{
+  "name": "impulse",
+  "version": "1.0.0",
+  "description": "Impulse for Grok Build via the hosted Impulse MCP server at mcp.impul.co. Work with events, registration and invitation pages, event emails, guest lists, and check-in. Edits are made in private drafts; publishing or sending happens only when you ask. Sign in with your Impulse account via OAuth; no API key needed.",
+  "author": {
+    "name": "Impulse Interactive",
+    "url": "https://www.impulse-interactive.com"
+  },
+  "homepage": "https://www.impulse-interactive.com/product/mcp-server",
+  "repository": "https://github.com/impul-co/impulse-mcp",
+  "license": "MIT",
+  "keywords": ["impulse", "impulse mcp", "impulse interactive", "impulse events"]
+}
