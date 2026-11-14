@@ -4,9 +4,22 @@ The Impulse MCP server is a hosted [Model Context Protocol](https://modelcontext
 
 Official product page and docs: <https://www.impulse-interactive.com/product/mcp-server>
 
+[![Add to Kiro](https://kiro.dev/images/add-to-kiro.svg)](https://kiro.dev/launch/mcp/add?name=impulse&config=%7B%22url%22%3A%22https%3A%2F%2Fmcp.impul.co%2Fmcp%22%2C%22disabled%22%3Afalse%2C%22autoApprove%22%3A%5B%5D%7D)
+
+- Privacy policy: <https://www.impulse-interactive.com/privacy>
+- Support: [martin@impul.co](mailto:martin@impul.co) · <https://www.impulse-interactive.com>
+
 ## About this repository
 
-This repository contains documentation and MCP registry metadata (`server.json`) only. The server is hosted by Impulse. Its source code is not in this repository.
+This repository contains documentation and client metadata only. The server is hosted by Impulse. Its source code is not in this repository.
+
+| File | Used by |
+| --- | --- |
+| `server.json` | MCP registry metadata |
+| `gemini-extension.json`, `GEMINI.md` | Gemini CLI extension (points at the hosted server) |
+| `.grok-plugin/plugin.json`, `.mcp.json` | Grok Build plugin (points at the hosted server) |
+
+None of these files contain server code, API keys, or tokens.
 
 ## Server URL
 
@@ -123,6 +136,50 @@ You can also use **Chat: Open Customizations > MCP Servers > Add Server**, then 
 You do not need an OAuth client ID. Impulse supports dynamic client registration and CIMD.
 
 Older editor-managed configs used `.vscode/mcp.json` with a top-level `servers` object and `"type": "http"`. The VS Code docs now point new Copilot configs to the `mcpServers` format above.
+
+### Kiro
+
+Client docs: <https://kiro.dev/docs/mcp/configuration/>
+
+Click **Add to Kiro** above, or add this to `~/.kiro/settings/mcp.json` (user) or `.kiro/settings/mcp.json` (workspace):
+
+```json
+{
+  "mcpServers": {
+    "impulse": {
+      "url": "https://mcp.impul.co/mcp",
+      "disabled": false,
+      "autoApprove": []
+    }
+  }
+}
+```
+
+Then sign in to Impulse when Kiro prompts you. Do not add an `Authorization` header.
+
+### Gemini CLI
+
+Client docs: <https://geminicli.com/docs/extensions/reference/>
+
+Install this repository as an extension:
+
+```sh
+gemini extensions install https://github.com/impul-co/impulse-mcp
+```
+
+The extension (`gemini-extension.json`) adds the hosted server as `impulse` (`"type": "http"`, `"url": "https://mcp.impul.co/mcp"`) and loads `GEMINI.md` as context. Restart Gemini CLI, then sign in with `/mcp auth impulse`.
+
+### Grok Build
+
+Client docs: <https://github.com/xai-org/grok-build/blob/main/crates/codegen/xai-grok-pager/docs/user-guide/09-plugins.md>
+
+This repository is also a Grok Build plugin (`.grok-plugin/plugin.json` plus `.mcp.json`). Install it from the repository:
+
+```sh
+grok plugin install impul-co/impulse-mcp --trust
+```
+
+Installing with `--trust` lets the plugin's MCP server load. Then sign in to Impulse when prompted.
 
 ### ChatGPT
 
@@ -275,9 +332,10 @@ Covers email, message, and page tags, including the custom domain landing page a
 - Company site: <https://www.impulse-interactive.com>
 - Sign up: <https://portal.impul.co/signup>
 - AI Agent Setup in the Impulse portal (sign-in required): <https://portal.impul.co/mcp>
-- Privacy: <https://www.impulse-interactive.com/privacy>
+- Privacy policy: <https://www.impulse-interactive.com/privacy>
 - Terms: <https://www.impulse-interactive.com/tos>
-- Support: [impulse@impulse-interactive.com](mailto:impulse@impulse-interactive.com)
+- Support: [martin@impul.co](mailto:martin@impul.co) or <https://www.impulse-interactive.com>
+- General contact: [impulse@impulse-interactive.com](mailto:impulse@impulse-interactive.com)
 
 ## License
 
